@@ -18,7 +18,7 @@ boot-repair - installs and runs boot-repair for Linux (not supported on macOS)
 
 ## Changelog
 
-### 0.0.0
+### 0.0.0A
 
 Released linux/recovery-tools.sh
 Just basic commands, like help and exit, along with boot-repair, which installs and runs boot-repair for Linux (not supported on macOS)

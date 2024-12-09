@@ -1,5 +1,8 @@
 #!/bin/bash
 
+ver=0.0.0
+verS=0.0.0B
+
 catch() {
     echo "An error occured"
     exit -1
@@ -21,7 +24,7 @@ else
 fi
 
 echo "Welcome to Calebh101 Recovery Tools for $name"
-echo "recovery-tools 0.0.0"
+echo "recovery-tools $ver ($verS)"
 
 command-input() {
     echo ""
@@ -34,8 +37,8 @@ command-input() {
     else
         case "$user_input" in
             help)
-                echo "Possible commands\n"
-                echo -e "help\nShow commands\nexit\nQuits recovery-tools\nboot-repair\nInstalls and runs boot-repair for Linux" | paste -d "\t" - - 
+                echo "Recovery Tools Help Menu (for version $ver)"
+                echo -e "Command\tAction\nhelp\tShow commands\nexit\tQuits recovery-tools\nboot-repair\tInstalls and runs boot-repair for Linux" | column -t -s $'\t'
                 ;;
             exit|quit|stop)
                 quit
