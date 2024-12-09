@@ -12,13 +12,13 @@ This runs on all Linux distros, including macOS. However, there are no tools for
 
 ## Commands
 
-help - displays commands
-exit - exits the program (you can also type quit, stop, or leave it blank)
-boot-repair - installs and runs boot-repair for Linux (not supported on macOS)
+- help - displays commands
+- exit - exits the program (you can also type quit, stop, or leave it blank)
+- boot-repair - installs and runs boot-repair for Linux (not supported on macOS)
 
 ## Changelog
 
-### 0.0.0A
+### 0.0.0
 
-Released linux/recovery-tools.sh
-Just basic commands, like help and exit, along with boot-repair, which installs and runs boot-repair for Linux (not supported on macOS)
+- Released linux/recovery-tools.sh
+- Just basic commands, like help and exit, along with boot-repair, which installs and runs boot-repair for Linux (not supported on macOS)
