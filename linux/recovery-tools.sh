@@ -3,17 +3,21 @@
 ver=0.0.0
 verS=0.0.0B
 
+trap catch ERR
+
 catch() {
     echo "An error occured"
     exit -1
 }
 
 quit() {
-    echo "Exiting..."
+    echo "Exiting Recovery Tools..."
     exit 0
 }
 
-trap catch ERR
+help() {
+    echo -e "Command\tAction\nhelp\tShow available commands\nexit\tQuit the recovery-tools application\nboot-repair\tInstall and run boot-repair for Linux" | column -t -s $'\t'
+}
 
 if [[ "$(uname)" == "Darwin" ]]; then
     platform=darwin
@@ -22,6 +26,20 @@ else
     platform=linux
     name=Linux
 fi
+
+boot_repair() {
+    if ! command -v boot-repair &> /dev/null
+    then
+        echo "Installing boot-repair..."
+        sudo add-apt-repository ppa:yannubuntu/boot-repair
+        sudo apt update
+        sudo apt install -y boot-repair
+    fi
+
+    echo "Starting boot-repair..."
+    boot-repair
+    echo "Exiting boot-repair..."
+}
 
 echo "Welcome to Calebh101 Recovery Tools for $name"
 echo "recovery-tools $ver ($verS)"
@@ -38,7 +56,7 @@ command-input() {
         case "$user_input" in
             help)
                 echo "Recovery Tools Help Menu (for version $ver)"
-                echo -e "Command\tAction\nhelp\tShow commands\nexit\tQuits recovery-tools\nboot-repair\tInstalls and runs boot-repair for Linux" | column -t -s $'\t'
+                help
                 ;;
             exit|quit|stop)
                 quit
@@ -48,17 +66,7 @@ command-input() {
                 if [ "$platform" == "darwin" ]; then
                     echo "Error: unsupported platform: $platform"
                 else
-                    if ! command -v boot-repair &> /dev/null
-                    then
-                        echo "Installing boot-repair..."
-                        sudo add-apt-repository ppa:yannubuntu/boot-repair
-                        sudo apt update
-                        sudo apt install -y boot-repair
-                    fi
-
-                    echo "Starting boot-repair..."
-                    boot-repair
-                    echo "Exiting boot-repair..."
+                    boot_repair
                 fi
                 echo "Ended boot-repair session"
                 ;;
